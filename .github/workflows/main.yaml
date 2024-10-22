@@ -2,6 +2,9 @@
 name: Overwatch-Server-Selector
 
 on: 
+  push:
+    branches:
+      - main
   pull_request:
     types:
       - closed
@@ -21,13 +24,13 @@ jobs:
         with:
           path: .
       - name: exe_to_workflow
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: MINA Overwatch 2 Server Selector.exe
           path: dist
       - name: gh_tag
         id: gh_tag
-        uses: anothrNick/github-tag-action@1.52.0
+        uses: anothrNick/github-tag-action@1.71.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: gh_release
